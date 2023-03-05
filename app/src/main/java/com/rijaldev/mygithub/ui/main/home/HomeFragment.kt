@@ -64,54 +64,57 @@ class HomeFragment : Fragment() {
     }
 
     private fun setUpView() {
-        viewModel.users.observe(viewLifecycleOwner) { users ->
-            userAdapter.submitList(users)
-        }
-        viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
-            showLoading(isLoading)
-            showError(isError = false, isLoading = isLoading)
-        }
-        viewModel.errorMessage.observe(viewLifecycleOwner) {
-            it.getContentIfNotHandled()?.let {
-                showError(true)
-            }
-        }
+        viewModel.searchUsers.observe(viewLifecycleOwner, userObserver)
         binding?.searchView?.apply {
             setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     if (!query.isNullOrBlank()) {
-                        viewModel.searchUsers(query)
+                        viewModel.fetchSearchUsers(query)
                     }
                     clearFocus()
                     return true
                 }
 
-                override fun onQueryTextChange(query: String?): Boolean {
-                    if (!query.isNullOrBlank()) {
-                        viewModel.searchUsers(query)
-                        Log.d("HomeFragment", "onQueryTextChange: $query")
-                    }
-                    return true
-                }
+                override fun onQueryTextChange(query: String?) = false
             })
         }
         binding?.contentError?.btnRetry?.setOnClickListener {
             val query = binding?.searchView?.query
-            if (!query.isNullOrBlank()) viewModel.retry(true)
-            else viewModel.retry(false)
+            if (!query.isNullOrBlank()) viewModel.fetchSearchUsers("$query")
         }
     }
 
-    private fun showError(isError: Boolean, isLoading: Boolean = false) {
-        binding?.apply {
-            contentError.root.isVisible = isError and !isLoading
-            rvUser.isVisible = !isError and !isLoading
+    private val userObserver = Observer<Result<List<User>>> { result ->
+        when (result) {
+            is Result.Loading -> {
+                setState(
+                    isError = false,
+                    isLoading = true
+                )
+            }
+            is Result.Success -> {
+                setState(
+                    isError = false,
+                    isLoading = false
+                )
+                val users = result.data
+                userAdapter.submitList(users)
+            }
+            is Result.Error -> {
+                setState(
+                    isError = true,
+                    isLoading = false
+                )
+            }
         }
     }
 
-    private fun showLoading(isLoading: Boolean) {
+    private fun setState(isError: Boolean, isLoading: Boolean) {
         binding?.apply {
+            contentError.root.isVisible = isError
             shimmerFrameUser.root.isVisible = isLoading
+            rvUser.isVisible = !isError and !isLoading
+            searchAnim.isVisible = false
         }
     }
 }

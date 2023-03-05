@@ -18,6 +18,7 @@ import com.rijaldev.mygithub.data.remote.Result
 import com.rijaldev.mygithub.databinding.ActivityDetailBinding
 import com.rijaldev.mygithub.domain.model.DetailUser
 import com.rijaldev.mygithub.ui.adapter.SectionPagerAdapter
+import com.rijaldev.mygithub.util.ColorType.setColor
 import com.rijaldev.mygithub.util.NumberFormatter.shortenNumber
 import com.rijaldev.mygithub.vm.ViewModelFactory
 
@@ -72,7 +73,6 @@ class DetailActivity : AppCompatActivity() {
     private fun setUpView() {
         binding.btnRetry.setOnClickListener {
             viewModel.setUsername(navArgs.username.toString())
-            showError(false)
         }
         viewModel.detailUser.observe(this, userObserver)
     }
@@ -80,17 +80,24 @@ class DetailActivity : AppCompatActivity() {
     private val userObserver = Observer<Result<DetailUser>> { result ->
         when (result) {
             is Result.Loading -> {
-                showLoading(true)
+                setState(
+                    isError = false,
+                    isLoading = true
+                )
             }
             is Result.Success -> {
-                showLoading(false)
-                showError(false)
+                setState(
+                    isError = false,
+                    isLoading = false
+                )
                 val user = result.data
                 user?.populateDetailUser()
             }
             is Result.Error -> {
-                showLoading(false)
-                showError(true)
+                setState(
+                    isError = true,
+                    isLoading = false
+                )
             }
         }
     }
@@ -100,27 +107,21 @@ class DetailActivity : AppCompatActivity() {
             Glide.with(this@DetailActivity)
                 .load(avatarUrl)
                 .into(ivUser)
+            tvUserType.setColor(this@DetailActivity, type)
             tvFollowersCount.text = followers.shortenNumber()
             tvReposCount.text = publicRepos.shortenNumber()
             tvFollowingCount.text = following.shortenNumber()
             tvFullName.text = name
-            tvUserType.text = type
             tvUserBio.text = bio
             tvUserBio.isVisible = !bio.isNullOrBlank()
         }
     }
 
-    private fun showLoading(isLoading: Boolean) {
-        binding.apply {
-            shimmerFrameUser.root.isVisible = isLoading
-            contentDetailUser.root.visibility = if (!isLoading) View.VISIBLE else View.INVISIBLE
-        }
-    }
-
-    private fun showError(isError: Boolean) {
+    private fun setState(isError: Boolean, isLoading: Boolean) {
         binding.apply {
             btnRetry.isVisible = isError
-            contentDetailUser.root.visibility = if (!isError) View.VISIBLE else View.INVISIBLE
+            shimmerFrameUser.root.isVisible = isLoading
+            contentDetailUser.root.visibility = if (!isLoading and !isError) View.VISIBLE else View.INVISIBLE
         }
     }
 

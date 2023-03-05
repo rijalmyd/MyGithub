@@ -71,7 +71,6 @@ class FollowFragment : Fragment() {
         binding?.contentError?.btnRetry?.setOnClickListener {
             viewModel.setUsername(username.toString())
             setUpType()
-            showError(false)
         }
     }
 
@@ -84,29 +83,34 @@ class FollowFragment : Fragment() {
 
     private val userObserver = Observer<Result<List<User>>> { result ->
         when (result) {
-            is Result.Loading -> showLoading(true)
+            is Result.Loading -> {
+                setState(
+                    isError = false,
+                    isLoading = true
+                )
+            }
             is Result.Success -> {
-                showLoading(false)
+                setState(
+                    isError = false,
+                    isLoading = false
+                )
                 val users = result.data
                 userAdapter.submitList(users)
             }
             is Result.Error -> {
-                showLoading(false)
-                showError(true)
+                setState(
+                    isError = true,
+                    isLoading = false
+                )
             }
         }
     }
 
-    private fun showError(isError: Boolean) {
+    private fun setState(isError: Boolean, isLoading: Boolean) {
         binding?.apply {
             contentError.root.isVisible = isError
-            rvUser.isVisible = !isError
-        }
-    }
-
-    private fun showLoading(isLoading: Boolean) {
-        binding?.apply {
             shimmerFrameUser.root.isVisible = isLoading
+            rvUser.isVisible = !isError and !isLoading
         }
     }
 

@@ -7,7 +7,6 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.rijaldev.mygithub.ui.detail.DetailActivity
 import com.rijaldev.mygithub.ui.detail.follow.FollowFragment
 import com.rijaldev.mygithub.ui.detail.repo.RepoFragment
-import com.rijaldev.mygithub.util.BundleDSL
 
 class SectionPagerAdapter(
     activity: AppCompatActivity,
