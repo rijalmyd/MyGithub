@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="16dp"
+    android:paddingTop="16dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    tools:ignore="UnusedAttribute">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/shimmer_iv_user"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/shimmer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:shapeAppearanceOverlay="@style/Theme.MyGithub.CircleImage" />
+
+    <TextView
+        android:id="@+id/shimmer_tv_username"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="4dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:background="@drawable/bg_shimmer_effect"
+        app:layout_constraintBottom_toTopOf="@+id/shimmer_tv_user_type"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/shimmer_iv_user"
+        app:layout_constraintTop_toTopOf="@id/shimmer_iv_user"
+        app:layout_constraintVertical_chainStyle="packed"
+        style="@style/TextAppearance.MaterialComponents.Body1"/>
+
+    <TextView
+        android:id="@+id/shimmer_tv_user_type"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/bg_shimmer_effect"
+        app:layout_constraintBottom_toBottomOf="@id/shimmer_iv_user"
+        app:layout_constraintStart_toStartOf="@id/shimmer_tv_username"
+        app:layout_constraintTop_toBottomOf="@+id/shimmer_tv_username" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0.2dp"
+        android:background="@color/shimmer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/shimmer_tv_username"
+        app:layout_constraintEnd_toEndOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
