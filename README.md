@@ -1,6 +1,9 @@
 # MyGithub
 The first and the second submission on Belajar Fundamental Aplikasi Android (BFAA) class Dicoding Academy | Bangkit 2023
 
+> **Warning**
+> IF YOU ARE DOING SUBMISSION, PLEASE USE THIS AS REFERENCE. DO NOT COPY PASTE!
+
 ## The first (1st) submission screenshots :
 <table>
    <tr>
