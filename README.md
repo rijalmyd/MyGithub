@@ -14,6 +14,6 @@ The first and the second submission on Belajar Fundamental Aplikasi Android (BFA
       <td><img src="screenshots/Screenshot_20230306-215019_myGitHub.png" align="center" alt="4"></td>
   </tr>
   <tr>
-      <td><img src="screenshots/Screenshot_20230306-215107_myGitHub.png.png" align="center" alt="4"></td>
+      <td><img src="screenshots/Screenshot_20230306-215107_myGitHub.png" align="center" alt="4"></td>
   </tr>
 </table>
