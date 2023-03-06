@@ -20,5 +20,4 @@ class DetailViewModel(
             userRepository.getDetailUser(username)
         }
     }
-
 }
