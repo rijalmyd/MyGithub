@@ -2,7 +2,7 @@
 The first and the second submission on Belajar Fundamental Aplikasi Android (BFAA) class Dicoding Academy | Bangkit 2023
 
 > **Warning**
-> IF YOU ARE DOING ON THE SAMESUBMISSION, PLEASE USE THIS AS REFERENCE. PLEASE DON'T COPY PASTE!
+> IF YOU ARE DOING ON THE SAME SUBMISSION, PLEASE USE THIS AS A REFERENCE. PLEASE DON'T COPY PASTE!
 
 ## The first (1st) submission screenshots :
 <table>
