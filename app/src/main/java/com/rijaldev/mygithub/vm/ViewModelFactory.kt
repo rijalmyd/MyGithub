@@ -4,9 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.rijaldev.mygithub.di.RepositoryModule
 import com.rijaldev.mygithub.domain.repository.UserRepository
-import com.rijaldev.mygithub.ui.detail.DetailViewModel
-import com.rijaldev.mygithub.ui.detail.follow.FollowViewModel
-import com.rijaldev.mygithub.ui.main.home.HomeViewModel
+import com.rijaldev.mygithub.presentation.detail.DetailViewModel
+import com.rijaldev.mygithub.presentation.detail.follow.FollowViewModel
+import com.rijaldev.mygithub.presentation.detail.repo.RepoViewModel
+import com.rijaldev.mygithub.presentation.main.home.HomeViewModel
 
 class ViewModelFactory private constructor(
     private val userRepository: UserRepository
@@ -20,6 +21,9 @@ class ViewModelFactory private constructor(
             }
             modelClass.isAssignableFrom(DetailViewModel::class.java) -> {
                 DetailViewModel(userRepository) as T
+            }
+            modelClass.isAssignableFrom(RepoViewModel::class.java) -> {
+                RepoViewModel(userRepository) as T
             }
             modelClass.isAssignableFrom(FollowViewModel::class.java) -> {
                 FollowViewModel(userRepository) as T

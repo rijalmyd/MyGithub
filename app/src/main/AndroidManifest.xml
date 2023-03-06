@@ -15,11 +15,14 @@
         android:theme="@style/Theme.MyGithub"
         tools:targetApi="31">
         <activity
-            android:name=".ui.detail.DetailActivity"
+            android:name=".presentation.detail.DetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.main.MainActivity"
-            android:exported="true">
+            android:name=".presentation.main.MainActivity"
+            android:exported="false" />
+        <activity android:name=".presentation.splash.RoutingActivity"
+            android:exported="true"
+            android:theme="@style/Theme.MyGithub.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".ui.detail.DetailActivity">
+    tools:context=".presentation.detail.DetailActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -43,7 +43,8 @@
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="0.5">
 
-                <include android:id="@+id/content_detail_user"
+                <include
+                    android:id="@+id/content_detail_user"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:visibility="invisible"
@@ -52,7 +53,8 @@
                     layout="@layout/content_detail_user"
                     tools:visibility="visible"/>
 
-                <include android:id="@+id/shimmer_frame_user"
+                <include
+                    android:id="@+id/shimmer_frame_user"
                     layout="@layout/shimmer_content_detail_user"
                     android:visibility="gone"/>
 
@@ -72,7 +74,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:contentDescription="@string/retry" />/>
+                    android:contentDescription="@string/retry" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.google.android.material.tabs.TabLayout

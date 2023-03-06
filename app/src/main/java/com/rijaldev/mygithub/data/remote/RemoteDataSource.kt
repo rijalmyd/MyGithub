@@ -6,11 +6,11 @@ class RemoteDataSource(
     private val apiService: ApiService,
 ) {
 
-    suspend fun getUsers() = apiService.getUsers()
-
     suspend fun searchUsers(query: String) = apiService.searchUsers(query)
 
     suspend fun getDetailUser(username: String) = apiService.getDetailUser(username)
+
+    suspend fun getRepos(username: String) = apiService.getRepos(username)
 
     suspend fun getFollowers(username: String) = apiService.getFollowers(username)
 

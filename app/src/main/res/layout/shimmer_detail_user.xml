@@ -45,7 +45,6 @@
         app:layout_constraintTop_toBottomOf="@id/shimmer_tv_repos_count" />
 
     <TextView
-        android:id="@+id/shimmer_tv_followers_count"
         style="@style/TextAppearance.MaterialComponents.Body1"
         android:layout_width="48dp"
         android:layout_height="wrap_content"
@@ -68,7 +67,6 @@
         app:layout_constraintTop_toTopOf="@id/shimmer_text_repos" />
 
     <TextView
-        android:id="@+id/shimmer_tv_following_count"
         style="@style/TextAppearance.MaterialComponents.Body1"
         android:layout_width="48dp"
         android:layout_height="wrap_content"
@@ -101,7 +99,6 @@
         app:layout_constraintStart_toStartOf="@id/shimmer_iv_user" />
 
     <TextView
-        android:id="@+id/shimmer_tv_full_name"
         android:layout_width="144dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"

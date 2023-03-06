@@ -1,6 +1,5 @@
 package com.rijaldev.mygithub.di
 
-import com.rijaldev.mygithub.data.remote.RemoteDataSource
 import com.rijaldev.mygithub.data.repository.UserRepositoryImpl
 import com.rijaldev.mygithub.domain.repository.UserRepository
 

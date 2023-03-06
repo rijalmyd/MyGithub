@@ -38,4 +38,10 @@
     </style>
     <style name="Theme.MyGithub.AppBarOverlay" parent="ThemeOverlay.AppCompat.Light"/>
     <style name="Theme.MyGithub.PopUpOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="Theme.MyGithub.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash</item>
+        <item name="windowSplashScreenAnimationDuration">200</item>
+        <item name="postSplashScreenTheme">@style/Theme.MyGithub</item>
+    </style>
 </resources>

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context=".ui.main.home.HomeFragment">
+    tools:context=".presentation.main.home.HomeFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -44,14 +44,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <include android:id="@+id/content_error"
+            <include
+                android:id="@+id/content_error"
                 layout="@layout/content_error"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:visibility="gone"
                 app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
 
-            <include android:id="@+id/shimmer_frame_user"
+            <include
+                android:id="@+id/shimmer_frame_user"
                 layout="@layout/shimmer_content_user"
                 android:visibility="gone"
                 android:layout_width="match_parent"
@@ -69,6 +71,13 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
+
+            <include
+                android:id="@+id/content_empty"
+                layout="@layout/content_empty"
+                android:visibility="gone"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
