@@ -1,0 +1,57 @@
+Test Case
+
+Unit Test 
+1. MainViewModelTest
+	- Ketika fungsi getTheme dipanggil dan mengembalikan nilai True
+		- Memastikan fungsi getTheme di SettingRepository terpanggil
+		- Memastikan hasil tidak null
+		- Memastikan hasil sesuai dengan yang di inginkan
+
+	- Ketika fungsi getTheme dipanggil dan mengembalikan nilai False
+		- Memastikan fungsi getTheme di SettingRepository terpanggil
+		- Memastikan hasil tidak null
+		- Memastikan hasil sesuai dengan yang di inginkan
+
+	- Ketika fungsi setTheme dipanggil
+		- Memastikan fungsi setTheme di SettingRepository terpanggil
+
+2. HomeViewModelTest
+	- Ketika searchUsers mengembalikan Result.Success
+		- Memastikan mengembalikan Result.Success
+		- Memastikan data user tidak null
+		- Memastikan jumlah data user sesuai dengan yang di inginkan
+
+	- Ketika searchUsers mengembalikan Result.Error
+		- Memastikan mengembalikan Result.Error
+		- Memastikan pesan error tidak null
+		- Memastikan pesan error sesuai dengan yang di inginkan
+
+UI Test
+1. MainActivityTest
+	- Ketika Success saat mencari user
+		- Memastikan search_view sudah ditampilkan
+		- Memasukkan valid query dan mengklik enter
+		- Memastikan rv_user ditampilkan
+		- Melakukan scroll ke posisi ke 5 pada RecyclerView
+
+	- Ketika Success saat mencari user dan terjadi rotasi layar
+		- Memastikan search_view sudah ditampilkan
+		- Memasukkan valid query dan mengklik enter
+		- Memastikan rv_user ditampilkan
+		- Mematikan koneksi internet perangkat
+		- Memastikan rv_user ditampilkan
+		- Melakukan scroll ke posisi ke 5 pada RecyclerView
+		- Menghidupkan kembali koneksi internet
+
+	- Ketika Empty saat mencari user
+		- Memastikan search_view sudah ditampilkan
+		- Memasukkan invalid query dan mengklik enter
+		- Memastikan content_empty ditampilkan
+
+	- Ketika Error saat mencari user
+		- Mematikan koneksi internet
+		- Memastikan search_view sudah ditampilkan
+		- Memasukkan valid query dan mengklik enter
+		- Memastikan content_error ditampilkan
+		- Menghidupkan kembali koneksi internet
+		
