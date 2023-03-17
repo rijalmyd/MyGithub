@@ -1,25 +1,30 @@
 package com.rijaldev.mygithub.data.repository
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.rijaldev.mygithub.data.remote.RemoteDataSource
 import com.rijaldev.mygithub.data.remote.Result
+import com.rijaldev.mygithub.domain.model.User
 import com.rijaldev.mygithub.domain.repository.UserRepository
 import com.rijaldev.mygithub.util.DataMapper
+import com.rijaldev.mygithub.util.wrapEspressoIdlingResource
 
 class UserRepositoryImpl(
-    private val remoteDataSource: RemoteDataSource,
+    private val remoteDataSource: RemoteDataSource
 ) : UserRepository {
 
-    override fun searchUsers(query: String) = liveData {
+    override fun searchUsers(query: String): LiveData<Result<List<User>>> = liveData {
         emit(Result.Loading())
-        try {
-            val response = remoteDataSource.searchUsers(query)
-            val result = response.items.map { userResponse ->
-                DataMapper.mapUserResponseToDomain(userResponse)
+        wrapEspressoIdlingResource {
+            try {
+                val response = remoteDataSource.searchUsers(query)
+                val result = response.items.map { userResponse ->
+                    DataMapper.mapUserResponseToDomain(userResponse)
+                }
+                emit(Result.Success(result))
+            } catch (e: Exception) {
+                emit(Result.Error(e.message))
             }
-            emit(Result.Success(result))
-        } catch (e: Exception) {
-            emit(Result.Error(e.message))
         }
     }
 

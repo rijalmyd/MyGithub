@@ -10,6 +10,7 @@ class RoutingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
+
         splashScreen.setKeepOnScreenCondition { true }
         startActivity(Intent(this, MainActivity::class.java))
         finish()

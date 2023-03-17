@@ -11,7 +11,7 @@ import com.rijaldev.mygithub.domain.model.User
 import com.rijaldev.mygithub.util.ColorType.setColor
 
 class UserAdapter(
-    private val onItemClicked: (String?) -> Unit,
+    private val onItemClicked: (User?) -> Unit,
 ) : ListAdapter<User, UserAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -34,7 +34,7 @@ class UserAdapter(
                 tvUsername.text = user.username
                 tvUserType.setColor(itemView.context, user.type)
             }
-            itemView.setOnClickListener { onItemClicked(user.username) }
+            itemView.setOnClickListener { onItemClicked(user) }
         }
     }
 

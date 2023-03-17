@@ -12,7 +12,7 @@
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/toolbar"
         app:elevation="0dp"
         android:theme="@style/Theme.MyGithub.AppBarOverlay">
 
@@ -21,22 +21,6 @@
             android:layout_height="wrap_content"
             app:titleEnabled="false"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_marginBottom="?attr/actionBarSize"
-                android:background="@color/white"
-                android:layout_gravity="top"
-                android:elevation="1dp"
-                app:popupTheme="@style/Theme.MyGithub.PopUpOverlay"
-                app:layout_collapseMode="pin"
-                app:titleTextColor="@color/black"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:title="rijalmyd"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -78,6 +62,21 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:contentDescription="@string/retry" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_marginBottom="?attr/actionBarSize"
+                android:background="@color/toolbar"
+                android:layout_gravity="top"
+                app:layout_collapseMode="pin"
+                app:navigationIconTint="@color/toolbar_content"
+                app:titleTextColor="@color/toolbar_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:title="rijalmyd"/>
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabs"

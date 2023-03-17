@@ -8,11 +8,11 @@ import com.rijaldev.mygithub.R
 object ColorType {
     fun TextView?.setColor(context: Context, type: String?) {
         when (type) {
-            "User" -> this?.apply {
+            Constants.TYPE_USER -> this?.apply {
                 setTextColor(ContextCompat.getColor(context, R.color.blue_200))
                 text = type
             }
-            "Organization" -> this?.apply {
+            Constants.TYPE_ORGANIZATION -> this?.apply {
                 setTextColor(ContextCompat.getColor(context, R.color.red_200))
                 text = type
             }

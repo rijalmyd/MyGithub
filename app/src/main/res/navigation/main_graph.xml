@@ -17,15 +17,20 @@
         android:id="@+id/favoriteFragment"
         android:name="com.rijaldev.mygithub.presentation.main.favorite.FavoriteFragment"
         android:label="Favorite"
-        tools:layout="@layout/fragment_favorite" />
+        tools:layout="@layout/fragment_favorite" >
+        <action
+            android:id="@+id/action_favoriteFragment_to_detailActivity"
+            app:destination="@id/detailActivity" />
+    </fragment>
     <activity
         android:id="@+id/detailActivity"
         android:name="com.rijaldev.mygithub.presentation.detail.DetailActivity"
         android:label="activity_detail"
         tools:layout="@layout/activity_detail" >
         <argument
-            android:name="username"
-            app:argType="string"
-            app:nullable="true" />
+            android:name="user"
+            app:argType="com.rijaldev.mygithub.domain.model.User"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </activity>
 </navigation>

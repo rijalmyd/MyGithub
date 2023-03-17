@@ -51,7 +51,7 @@
     <View
         android:layout_width="0dp"
         android:layout_height="0.2dp"
-        android:background="@color/light_gray"
+        android:background="@color/divider"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@id/tv_username"
         app:layout_constraintEnd_toEndOf="parent"/>

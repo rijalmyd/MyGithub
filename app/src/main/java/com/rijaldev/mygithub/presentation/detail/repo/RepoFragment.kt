@@ -22,7 +22,7 @@ class RepoFragment : Fragment() {
     private val binding get() = _binding
     private lateinit var repoAdapter: RepoAdapter
     private val viewModel: RepoViewModel by viewModels {
-        ViewModelFactory.getInstance()
+        ViewModelFactory.getInstance(requireActivity())
     }
     private val username by lazy {
         arguments?.getString(SectionPagerAdapter.EXTRA_USERNAME)

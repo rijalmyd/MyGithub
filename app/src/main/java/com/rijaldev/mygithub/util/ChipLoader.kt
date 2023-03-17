@@ -17,9 +17,9 @@ object ChipLoader {
             isCheckable = false
             isFocusable = true
             setEnsureMinTouchTargetSize(false)
-            chipBackgroundColor = ContextCompat.getColorStateList(context, R.color.white)
+            chipBackgroundColor = ContextCompat.getColorStateList(context, R.color.toolbar)
             chipStrokeWidth = 0.5f
-            chipStrokeColor = ContextCompat.getColorStateList(context, R.color.gray)
+            chipStrokeColor = ContextCompat.getColorStateList(context, R.color.toolbar_content)
             addView(this)
         }
     }

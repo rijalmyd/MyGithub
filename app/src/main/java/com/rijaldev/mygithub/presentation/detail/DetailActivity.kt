@@ -2,9 +2,12 @@ package com.rijaldev.mygithub.presentation.detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import androidx.annotation.StringRes
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.navigation.navArgs
@@ -22,9 +25,11 @@ import com.rijaldev.mygithub.vm.ViewModelFactory
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
+    private var menu: Menu? = null
+    private var isFavoriteUser = false
     private val navArgs: DetailActivityArgs by navArgs()
     private val viewModel: DetailViewModel by viewModels {
-        ViewModelFactory.getInstance()
+        ViewModelFactory.getInstance(application)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +38,7 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         if (savedInstanceState === null) {
-            viewModel.setUsername(navArgs.username.toString())
+            viewModel.setUsername(navArgs.user?.username.toString())
         }
 
         setUpToolbar()
@@ -46,9 +51,26 @@ class DetailActivity : AppCompatActivity() {
         return true
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        this.menu = menu
+        menuInflater.inflate(R.menu.menu_detail, menu)
+        viewModel.isFavoriteUser(navArgs.user?.username.toString()).observe(this) { isFavoriteUser ->
+            this.isFavoriteUser = isFavoriteUser
+            setFavoriteState(isFavoriteUser)
+        }
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.btn_favorite -> onFavButtonClicked()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     private fun setUpToolbar() {
         with(binding) {
-            toolbar.title = navArgs.username
+            toolbar.title = navArgs.user?.username
             setSupportActionBar(toolbar)
         }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -57,7 +79,7 @@ class DetailActivity : AppCompatActivity() {
     private fun setUpViewPager() {
         val sectionPagerAdapter = SectionPagerAdapter(
             activity = this,
-            username = navArgs.username.toString()
+            username = navArgs.user?.username.toString()
         )
         with(binding) {
             viewPager.adapter = sectionPagerAdapter
@@ -69,7 +91,7 @@ class DetailActivity : AppCompatActivity() {
 
     private fun setUpView() {
         binding.btnRetry.setOnClickListener {
-            viewModel.setUsername(navArgs.username.toString())
+            viewModel.setUsername(navArgs.user?.username.toString())
         }
         viewModel.detailUser.observe(this, userObserver)
     }
@@ -111,6 +133,27 @@ class DetailActivity : AppCompatActivity() {
             tvFullName.text = name
             tvUserBio.text = bio
             tvUserBio.isVisible = !bio.isNullOrBlank()
+        }
+    }
+
+    private fun onFavButtonClicked() {
+        setFavoriteState(!isFavoriteUser)
+        if (isFavoriteUser) {
+            navArgs.user?.let { viewModel.delete(it.username.toString()) }
+        } else {
+            navArgs.user?.let { viewModel.insert(it) }
+        }
+    }
+
+    private fun setFavoriteState(isFavoriteUser: Boolean) {
+        if (menu == null) return
+        val menuItem = menu?.findItem(R.id.btn_favorite)
+        menuItem?.apply {
+            icon = ContextCompat.getDrawable(
+                this@DetailActivity,
+                if (isFavoriteUser) R.drawable.ic_favorite_fill
+                else R.drawable.ic_favorite
+            )
         }
     }
 

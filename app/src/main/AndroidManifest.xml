@@ -22,7 +22,8 @@
             android:exported="false" />
         <activity android:name=".presentation.splash.RoutingActivity"
             android:exported="true"
-            android:theme="@style/Theme.MyGithub.Splash">
+            android:theme="@style/Theme.MyGithub.Splash"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

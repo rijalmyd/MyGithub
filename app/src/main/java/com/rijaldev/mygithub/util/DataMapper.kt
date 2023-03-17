@@ -1,5 +1,6 @@
 package com.rijaldev.mygithub.util
 
+import com.rijaldev.mygithub.data.local.entity.UserEntity
 import com.rijaldev.mygithub.data.remote.response.DetailUserResponse
 import com.rijaldev.mygithub.data.remote.response.RepoResponse
 import com.rijaldev.mygithub.data.remote.response.UserResponse
@@ -15,6 +16,26 @@ object DataMapper {
             username = username,
             avatarUrl = avatarUrl,
             type = type,
+        )
+    }
+
+    fun mapUserEntityToDomain(userEntity: UserEntity): User {
+        val (username, avatarUrl, type, id) = userEntity
+        return User(
+            username = username,
+            avatarUrl = avatarUrl,
+            type = type,
+            id = id
+        )
+    }
+
+    fun mapUserDomainToEntity(user: User): UserEntity {
+        val (username, avatarUrl, type, id) = user
+        return UserEntity(
+            username = username,
+            avatarUrl = avatarUrl,
+            type = type,
+            id = id
         )
     }
     

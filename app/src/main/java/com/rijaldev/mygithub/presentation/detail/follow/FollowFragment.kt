@@ -22,7 +22,7 @@ class FollowFragment : Fragment() {
     private val binding get() = _binding
     private lateinit var userAdapter: UserAdapter
     private val viewModel: FollowViewModel by viewModels {
-        ViewModelFactory.getInstance()
+        ViewModelFactory.getInstance(requireActivity())
     }
     private val username by lazy {
         arguments?.getString(SectionPagerAdapter.EXTRA_USERNAME)
@@ -55,7 +55,7 @@ class FollowFragment : Fragment() {
 
     private fun setUpRecyclerView() {
         userAdapter = UserAdapter(
-            onItemClicked = { _ -> }
+            onItemClicked = {}
         )
         binding?.rvUser?.apply {
             layoutManager = LinearLayoutManager(context)

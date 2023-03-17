@@ -23,7 +23,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding
     private lateinit var userAdapter: UserAdapter
     private val viewModel: HomeViewModel by viewModels {
-        ViewModelFactory.getInstance()
+        ViewModelFactory.getInstance(requireActivity())
     }
 
     override fun onCreateView(
@@ -48,8 +48,9 @@ class HomeFragment : Fragment() {
     private fun setUpRecyclerView() {
         binding?.apply {
             userAdapter = UserAdapter(
-                onItemClicked = { username ->
-                    val toDetailUser = HomeFragmentDirections.actionHomeFragmentToDetailActivity(username)
+                onItemClicked = { user ->
+                    val toDetailUser = HomeFragmentDirections.actionHomeFragmentToDetailActivity()
+                    toDetailUser.user = user
                     findNavController().navigate(toDetailUser)
                 }
             )
